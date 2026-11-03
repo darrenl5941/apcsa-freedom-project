@@ -53,16 +53,28 @@
                 
                 image(video, 0, 0); // Draw the webcam video on the canvas
 
-                // Check if there is at least one hand detected
-                if (hands.length > 0) {
-                    // Get the index finger tip and thumb of the first hand (index: 0 in the array)
-                    let fingerX = hands[0].index_finger_tip.x;
-                    let fingerY = hands[0].index_finger_tip.y;
+                // // Check if there is at least one hand detected
+                // if (hands.length > 0) {
+                //     // Get the index finger tip and thumb of the first hand (index: 0 in the array)
+                //     let fingerX = hands[0].index_finger_tip.x;
+                //     let fingerY = hands[0].index_finger_tip.y;
                     
-                    // Draw a yellow circle on the index finger tip
+                //     // Draw a yellow circle on the index finger tip
+                //     noStroke();
+                //     fill(255, 255, 0);
+                //     circle(fingerX, fingerY, 20);
+                // }
+
+                // version that draws a point on every `keypoint` on the hand
+                if(hands.length > 0) {
+                    let hand = hands[0]; // get array of the first hand
+                    fill(255, 0, 0);
                     noStroke();
-                    fill(255, 255, 0);
-                    circle(fingerX, fingerY, 20);
+
+                    for (let i = 0; i < hand.keypoints.length; i++) {
+                        let point = hand.keypoints[i];
+                        circle(point.x, point.y, 10);
+                    }
                 }
             }
             
