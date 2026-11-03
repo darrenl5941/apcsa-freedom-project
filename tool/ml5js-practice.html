@@ -25,16 +25,45 @@
         <!-- <script src="script.js"></script> -->
         <script>
             // JS
-            function setup() {
+
+            let video; // for the camera / webcam
+            let handPose;
+            let hands = [];
+
+            async function setup() {
                 console.log("ml5 version:", ml5.version);
-                let video; // for the camera / webcam
                 video = createCapture(VIDEO); // to access webcam
                 video.size(640, 480); // controls size shown on screen later
                 video.hide(); // prevent it from being put on screen too early
 
-            }
-            function draw() {
+                handPose = await ml5.handPose();
+                handPose.detectStart(video, gotHands);  // Start detecting hands in the webcam video
 
+                createCanvas(1200, 800); // width, height
+            }
+
+            // Callback function to receive the detection results
+            function gotHands(results) { // Store the detection results in the hands array
+
+                hands = results;
+            }     
+
+            function draw() {
+                background(640);
+                
+                image(video, 0, 0); // Draw the webcam video on the canvas
+
+                // Check if there is at least one hand detected
+                if (hands.length > 0) {
+                    // Get the index finger tip and thumb of the first hand (index: 0 in the array)
+                    let fingerX = hands[0].index_finger_tip.x;
+                    let fingerY = hands[0].index_finger_tip.y;
+                    
+                    // Draw a yellow circle on the index finger tip
+                    noStroke();
+                    fill(255, 255, 0);
+                    circle(fingerX, fingerY, 20);
+                }
             }
             
         </script>
