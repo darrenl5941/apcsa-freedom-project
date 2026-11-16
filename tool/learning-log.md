@@ -42,8 +42,19 @@
     
     // Get the index finger tip and thumb of the first hand (index: 0 in the array)
     let fingerX = hands[0].index_finger_tip.x;
+
     let fingerY = hands[0].index_finger_tip.y;
     ```
+### 11/16/2026
+
+* **Important Camera Note:** Make sure when changing the size of the camrea you change both `video.size()` and `createCanvas()` to the same value or there will be weird stretching on the camera
+* https://docs.ml5js.org/#/welcome/next-steps
+    *
+
+
+
+
+
 
 
 
@@ -52,6 +63,7 @@
 
 
 <!-- 
+
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
 * Challenges, a-ha moments, etc

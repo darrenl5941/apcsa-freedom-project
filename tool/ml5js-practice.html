@@ -33,13 +33,13 @@
             async function setup() {
                 console.log("ml5 version:", ml5.version);
                 video = createCapture(VIDEO); // to access webcam
-                video.size(640, 480); // controls size shown on screen later
+                video.size(900, 600); // controls size shown on screen later
                 video.hide(); // prevent it from being put on screen too early
 
                 handPose = await ml5.handPose();
                 handPose.detectStart(video, gotHands);  // Start detecting hands in the webcam video
 
-                createCanvas(1200, 800); // width, height
+                createCanvas(900, 600); // width, height
             }
 
             // Callback function to receive the detection results
